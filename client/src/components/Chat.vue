@@ -20,7 +20,7 @@ export default {
 
         const data = await response.json();
         this.response = data.message.content
-        
+
       } catch (error) {
         console.error('Error:', error);
       }
@@ -39,7 +39,7 @@ export default {
 
     <div>
       <span>C:\Users\You></span>
-      <input type="text" v-model="userMessage" @keyup.enter="sendMessage" placeholder="Type your message here"/>
+      <input type="text" v-model="userMessage" @keyup.enter="sendMessage" placeholder="Type your message here" />
     </div>
 
     <div class="triangle blink_me"></div>
@@ -47,21 +47,22 @@ export default {
 </template>
   
 <style scoped>
-h1{
+h1 {
   font-size: 1em;
 }
 
 input {
   background-color: black;
   border: none;
-  color: #39FF14;;
+  color: #39FF14;
+  ;
 }
 
 button {
   padding: 8px;
 }
 
-.triangle{
+.triangle {
   width: 10em;
   height: 10em;
   background-color: red;

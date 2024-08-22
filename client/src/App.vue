@@ -7,10 +7,3 @@ import Chat from './components/Chat.vue';
     <Chat />
   </main>
 </template>
-
-<style>
-@font-face {
-  font-family: matrix;
-  src: url('~@/assets/fonts/matrix.ttf');
-}
-</style>
