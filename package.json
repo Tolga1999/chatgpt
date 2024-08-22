@@ -4,7 +4,7 @@
   "description": "Chatgpt UI build with node.js and vue.js",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run dev --prefix client\" \"node index.js\"",
+    "start": "concurrently \"npm run dev --prefix client\" \"nodemon index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/Tolga1999/chatgpt#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "openai": "^4.56.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4"
   }
 }

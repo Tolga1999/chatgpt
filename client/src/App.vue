@@ -7,6 +7,3 @@ import Chat from './components/Chat.vue';
     <Chat />
   </main>
 </template>
-
-<style scoped>
-</style>

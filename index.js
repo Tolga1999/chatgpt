@@ -1,23 +1,36 @@
 const express = require('express');
 require('dotenv').config();
-const { Configuration, OpenAIApi } = require('openai');
+const cors = require('cors');
+const { OpenAI } = require('openai');
 
 const app = express();
+
+app.use(cors())
 app.use(express.json());
 
-const configuration = new Configuration({
+const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openai = new OpenAIApi(configuration);
-
-app.post('/test', async (req, res) => {
+app.post('/chat', async (req, res) => {
+    const message = await req.body.input
+    console.log(message)
     try {
+        const response = await openai.completions.create({
+            model: 'davinci-002',
+            prompt: message,
+            max_tokens: 60,
+        })
+
         return res.status(200).json({
-            message: 'working',
+            success: true,
+            message: response.choices[0].text
         })
     } catch (error) {
-
+        return res.status(400).json({
+            success: false,
+            error: error.response ? error.response.data : error.message || "there was an issue on the server",
+        })
     }
 });
 

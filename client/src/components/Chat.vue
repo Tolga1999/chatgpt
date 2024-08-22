@@ -1,37 +1,62 @@
 <template>
+  <main>
+    <h1>Chat with Davinci-002</h1>
     <div>
-      <h2>Chat with GPT</h2>
-      <input
-        type="text"
-        v-model="userMessage"
-        @keyup.enter="sendMessage"
-        placeholder="Type your message here"
-      />
+      <input type="text" v-model="userMessage" placeholder="Type your message here" />
       <button @click="sendMessage">Send</button>
-  
-      <div v-if="response">
-        <h3>Response:</h3>
-        <p>{{ response }}</p>
-      </div>
     </div>
-  </template>
+
+    <div v-if="response">
+      <h2>Response:</h2>
+      <p>{{ response }}</p>
+    </div>
+  </main>
+</template>
   
-  <script>
-  </script>
-  
-  <style scoped>
-  input {
-    width: 300px;
-    padding: 8px;
-    margin-right: 10px;
+<script>
+export default {
+  data() {
+    return {
+      userMessage: '',
+      response: '',
+    };
+  },
+  methods: {
+    // using fetch method
+    async sendMessage() {
+      try {
+        const response = await fetch('http://localhost:3000/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ input: this.userMessage }),
+        });
+
+        const data = await response.json();
+        this.response = data.message
+        
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
   }
+}
+</script>
   
-  button {
-    padding: 8px;
-  }
-  
-  h3 {
-    margin-top: 20px;
-  }
-  </style>
+<style scoped>
+input {
+  width: 300px;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px;
+}
+
+h2 {
+  margin-top: 20px;
+}
+</style>
   
