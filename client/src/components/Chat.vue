@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Chat with Davinci-002</h1>
+    <h1>Chat with GPT-4</h1>
     <div>
       <input type="text" v-model="userMessage" placeholder="Type your message here" />
       <button @click="sendMessage">Send</button>

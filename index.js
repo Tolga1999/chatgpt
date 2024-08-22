@@ -14,17 +14,16 @@ const openai = new OpenAI({
 
 app.post('/chat', async (req, res) => {
     const message = await req.body.input
-    console.log(message)
     try {
-        const response = await openai.completions.create({
-            model: 'davinci-002',
-            prompt: message,
+        const response = await openai.chat.completions.create({
+            model: 'gpt-4',
+            messages: [{"role": "user", "content": message}],
             max_tokens: 60,
         })
 
         return res.status(200).json({
             success: true,
-            message: response.choices[0].text
+            message: response.choices[0].message
         })
     } catch (error) {
         return res.status(400).json({
