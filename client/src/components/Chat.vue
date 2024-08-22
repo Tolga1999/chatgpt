@@ -1,18 +1,3 @@
-<template>
-  <main>
-    <h1>Chat with GPT-4</h1>
-    <div>
-      <input type="text" v-model="userMessage" placeholder="Type your message here" />
-      <button @click="sendMessage">Send</button>
-    </div>
-
-    <div v-if="response">
-      <h2>Response:</h2>
-      <p>{{ response }}</p>
-    </div>
-  </main>
-</template>
-  
 <script>
 export default {
   data() {
@@ -34,7 +19,7 @@ export default {
         });
 
         const data = await response.json();
-        this.response = data.message
+        this.response = data.message.content
         
       } catch (error) {
         console.error('Error:', error);
@@ -43,20 +28,53 @@ export default {
   }
 }
 </script>
+
+<template>
+  <main>
+    <h1>Welcome to the mainFrame. How can I help you today?</h1>
+
+    <div v-if="response">
+      <p>{{ response }}</p>
+    </div>
+
+    <div>
+      <span>C:\Users\You></span>
+      <input type="text" v-model="userMessage" @keyup.enter="sendMessage" placeholder="Type your message here"/>
+    </div>
+
+    <div class="triangle blink_me"></div>
+  </main>
+</template>
   
 <style scoped>
+h1{
+  font-size: 1em;
+}
+
 input {
-  width: 300px;
-  padding: 8px;
-  margin-right: 10px;
+  background-color: black;
+  border: none;
+  color: #39FF14;;
 }
 
 button {
   padding: 8px;
 }
 
-h2 {
-  margin-top: 20px;
+.triangle{
+  width: 10em;
+  height: 10em;
+  background-color: red;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 </style>
   
